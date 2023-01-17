@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { , useState } from 'react';
 
 function App() {
-  const [progress, setProgress] = useState([{}]);
   const [equation1, setEquation1] = useState({
     ox: '+',
     x: '',
@@ -61,7 +60,6 @@ function App() {
     return equation;
   };
   const calculate = () => {
-    setProgress([]); //arraynya nambah mulu su
     let [old_x, old_y, old_z] = [0, 0, 0];
 
     let new_x = (equation1.equal + (opration(equation1.oy, equation1.y) * old_y) + (opration(equation1.oz, equation1.z) * old_z)) / opration(equation1.x, equation1.x);
@@ -71,7 +69,6 @@ function App() {
     let difference_x = Math.abs(new_x - old_x);
     let difference_y = Math.abs(new_y - old_y);
     let difference_z = Math.abs(new_z - old_z);
-    setProgress([...progress, { x: new_x, y: new_y, z: new_z }]);
 
     while (difference_x < 0.0001) {
       [old_x, old_y, old_z] = [new_x, new_y, new_z];
@@ -83,14 +80,12 @@ function App() {
       difference_x = Math.abs(new_x - old_x);
       difference_y = Math.abs(new_y - old_y);
       difference_z = Math.abs(new_z - old_z);
-      setProgress([...progress, { x: new_x, y: new_y, z: new_z }]);
     }
     setResult({
       x: new_x,
       y: new_y,
       z: new_z
     });
-    console.log(progress);
   };
   const clear = () => {
     setEquation1({
