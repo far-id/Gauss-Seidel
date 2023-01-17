@@ -1,4 +1,4 @@
-import { , useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [equation1, setEquation1] = useState({
